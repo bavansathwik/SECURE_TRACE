@@ -1,0 +1,124 @@
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Search, MapPin, Shield, ArrowRight, Eye, FileText, Users } from "lucide-react";
+
+const Index = () => {
+  return (
+    <div className="flex flex-col">
+      {/* Hero */}
+      <section className="relative overflow-hidden py-20 md:py-32">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
+        <div className="container relative mx-auto px-4 text-center">
+          <div className="mx-auto max-w-3xl">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
+              <Shield className="h-4 w-4" />
+              Trusted Lost & Found Platform
+            </div>
+            <h1 className="font-display text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl">
+              Lost Something?{" "}
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                We'll Help You Find It.
+              </span>
+            </h1>
+            <p className="mt-6 text-lg text-muted-foreground md:text-xl">
+              Report lost items, browse found belongings, and reunite with your things. 
+              SecureTrace makes it simple, fast, and secure.
+            </p>
+            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <Link to="/report">
+                <Button size="lg" className="gap-2 text-base">
+                  <FileText className="h-5 w-5" />
+                  Report an Item
+                </Button>
+              </Link>
+              <Link to="/browse">
+                <Button size="lg" variant="outline" className="gap-2 text-base">
+                  <Search className="h-5 w-5" />
+                  Browse Found Items
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="border-t border-border bg-muted/30 py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="font-display text-center text-3xl font-bold text-foreground md:text-4xl">
+            How It Works
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-center text-muted-foreground">
+            Three simple steps to recover your belongings
+          </p>
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {[
+              { icon: FileText, title: "Report", desc: "Submit details about your lost or found item with photos and location.", color: "bg-primary" },
+              { icon: Eye, title: "Match", desc: "Our system suggests potential matches between lost and found reports.", color: "bg-secondary" },
+              { icon: Users, title: "Reunite", desc: "Connect with the owner or finder and get your item back safely.", color: "bg-accent" },
+            ].map((step, i) => (
+              <div key={i} className="group relative rounded-2xl border border-border bg-card p-8 text-center shadow-sm transition-all hover:shadow-lg hover:-translate-y-1">
+                <div className={`mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl ${step.color} text-primary-foreground shadow-lg`}>
+                  <step.icon className="h-7 w-7" />
+                </div>
+                <h3 className="font-display text-xl font-semibold text-card-foreground">{step.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              { value: "1,200+", label: "Items Returned" },
+              { value: "5,000+", label: "Reports Filed" },
+              { value: "98%", label: "User Satisfaction" },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="font-display text-4xl font-bold text-primary">{stat.value}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-border bg-gradient-to-r from-primary to-secondary py-20 text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="font-display text-3xl font-bold md:text-4xl">Ready to Find What You Lost?</h2>
+          <p className="mx-auto mt-4 max-w-lg text-primary-foreground/80">
+            Join thousands of people who have successfully recovered their belongings through SecureTrace.
+          </p>
+          <Link to="/auth?tab=signup">
+            <Button size="lg" variant="secondary" className="mt-8 gap-2 text-base">
+              Get Started Free
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border bg-muted/30 py-10">
+        <div className="container mx-auto flex flex-col items-center gap-4 px-4 text-center md:flex-row md:justify-between md:text-left">
+          <div className="flex items-center gap-2">
+            <Shield className="h-5 w-5 text-primary" />
+            <span className="font-display font-bold text-foreground">SecureTrace</span>
+          </div>
+          <p className="text-sm text-muted-foreground">© 2026 SecureTrace. All rights reserved.</p>
+          <div className="flex gap-4 text-sm text-muted-foreground">
+            <Link to="/browse" className="hover:text-foreground transition-colors">Browse</Link>
+            <Link to="/auth" className="hover:text-foreground transition-colors">Sign In</Link>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Index;
